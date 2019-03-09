@@ -1,0 +1,43 @@
+############################################################################
+#                                                                          #
+#                    > > Announcer+ plugin by Arthed <<                    #
+#                                                                          #
+############################################################################
+
+# THANK YOU SO MUCH FOR DOWNLOADING AND USING MY PLUGIN, I REALLY APPRECIATE IT!!
+
+# Welcome to the configuration file. Here you can change a lot of things,
+# because my plugin is really customizable. It's not mandatory to change
+# something here, but it's recommended if you want a custom server. :)
+
+Broadcast:
+# Set this to 'true' if you want to enable the broadcast feature, and 'false' to disable it on your server.
+   Enable: true
+# You can change the value after "Prefix: '' in order to set the broadcast's message prefix, you're allowed to use color codes.
+   Prefix: '&7[&cお知らせ&7] &f'
+# This message will be shown to staff members (which are having the "an.broadcast or/and an.broadcast.custom" permissions or op) when they aren't entering
+# enough arguments, when they're trying to make an announcement.
+# IT MAY NOT BE NECESARRY TO CHANGE THEM, BUT YOU CAN DO THIS IF YOU WANT.
+   WrongCommand: '&4Error: &fPlease use /broadcast <message>'
+   NoPermission: '&4Error: &fYou don t have permission to use this command!'
+   
+AutoBroadcast:
+# Set this to 'true' if you want to enable the autobroadcast feature, and 'false' to disable it on your server.
+   Enable: true
+# You can change the value after "Prefix: '" in order to set the autobroadcaster's message prefix, you're allowed to use color codes.
+   Prefix:  '&7[&9お知らせ&7] '
+# In seconds, how often your messages should be shown on your server?
+   Interval: 900
+   Messages:
+     - '&6/spawn で最初の場所へ戻れます。'
+     - '&6/eco でどこでもエンダーチェストを開けます。'
+     - '&6自動釣りModを除き、鉱石透視などのチートツール/Modの利用は処罰対象です。'
+     - '&6バグ利用によるアイテム増殖などゲームバランスを崩す行為は処罰対象です。'
+     - '&6建築エリアでの資源採掘はやめましょう。'
+     - '&6mcMMOのパワーレベルに応じて様々な権限が付与されます。'
+     - '&6サブアカウントの利用は1つまでです。'
+     - '&6窒息防止のため、ログアウトするときは必ずSpawnか建築ワールドの自分の保護に移動しましょう。'
+     - '&6ログインボーナス受け取るために、ログアウトするときはインベントリを1つ空けておきましょう。'
+     - '&6シルバーフィッシュ入り模様入り石レンガは、SPAWNワールドでお金やアイテムと交換ができます。'
+     - '&6換金できないシルバーフィッシュ入り模様入り石レンガは、ロビーの村人で正常なものに交換してください。'
+     - '&6ドロップアイテムを放置しないでください。他のプレイヤーの迷惑になります。'

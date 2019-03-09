@@ -1,0 +1,5 @@
+#!/bin/sh
+mcrcon "op $OP"
+/usr/local/spigot/bin/mkperm
+mcrcon "pex user ${OP} group set admins"
+

@@ -1,0 +1,31 @@
+#!/bin/sh
+cd /opt/mc1.12
+
+WEEK=`date +%w`
+
+docker-compose exec main mcrcon 'say 5分後にメンテナンスのためサーバを再起動します。'
+docker-compose exec hub mcrcon 'say 5分後にメンテナンスのためサーバを再起動します。'
+sleep 4m
+docker-compose exec main  mcrcon 'say 1分後にメンテナンスのためサーバを再起動します。'
+docker-compose exec hub  mcrcon 'say 1分後にメンテナンスのためサーバを再起動します。'
+sleep 50
+docker-compose exec main  mcrcon 'say 10秒後にサーバを再起動します。'
+docker-compose exec hub  mcrcon 'say 10秒後にサーバを再起動します。'
+sleep 8
+docker-compose exec main  mcrcon 'say サーバを再起動します。'
+docker-compose exec hub  mcrcon 'say サーバを再起動します。'
+sleep 2
+
+systemctl stop minecraft
+
+if [ "${WEEK}" -eq 5 ]; then
+  git pull
+  docker pull nginx:1-alpine
+  docker pull alpine:3.9
+  docker-compose build --no-cache bungee
+  docker-compose build --no-cache web
+  docker rmi `docker images | awk '/<none>/{print $3}'`
+fi
+
+sleep 30
+systemctl start minecraft

@@ -1,0 +1,30 @@
+server {
+    listen 80;
+
+    server_name  localhost;
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+    location /map/ {
+        alias  /var/www/map/;
+    }
+
+
+    location ~ \.php${DOLLAR} {
+        root           /var/www/;
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  ${DOLLAR}document_root${DOLLAR}fastcgi_script_name;
+        include        fastcgi_params;
+    }
+    location /healthcheck_hnx {
+        alias  /var/www/ckhnx;
+    }
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+

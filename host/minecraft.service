@@ -1,0 +1,22 @@
+[Unit]
+Description=Minecraft service
+Requires=docker.service
+
+[Service]
+User=root
+Type=simple
+
+EnvironmentFile=-/opt/mc1.12/.env
+Environment=COMPOSE_FILE=/opt/mc1.12/docker-compose.prod.yml
+
+ExecStartPre=-/usr/local/bin/docker-compose -f ${COMPOSE_FILE} down
+
+ExecStart=/usr/local/bin/docker-compose -f ${COMPOSE_FILE} up
+
+ExecStop=/usr/local/bin/docker-compose -f ${COMPOSE_FILE} down
+
+Restart=always
+RestartSec=180s
+
+[Install]
+WantedBy=multi-user.target

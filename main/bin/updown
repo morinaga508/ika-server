@@ -1,0 +1,30 @@
+#!/bin/bash
+test -d /var/run || mkdir -p /var/run
+test -f /var/run/ckhnx || echo 0 > /var/run/ckhnx
+
+sleep 10
+curl -f http://web/healthcheck_hnx
+if [ $? -eq 0 ]; then
+  STAT=0
+else
+  STAT=1
+fi
+
+if [ "${STAT}" -gt "$(cat /var/run/ckhnx)" ]; then
+  mcrcon -H hub 'say サーバーをオープンします。'
+  mcrcon 'whitelist off'
+elif [ "${STAT}" -lt "$(cat /var/run/ckhnx)" ]; then
+  mcrcon 'whitelist on'
+  mcrcon 'say HNXサーバーが復旧しました。5分後に避難所をクローズします。'
+　mcrcon 'say ログアウト前に必ず自分の保護かSpawnへ移動してください。'
+  sleep 4m
+  mcrcon 'say HNXサーバーが復旧しました。1分後に避難所をクローズします。'
+  sleep 50
+  mcrcon 'say HNXサーバーが復旧しました。10秒後に避難所をクローズします。'
+  sleep 8
+  mcrcon 'say 避難所をクローズします。ご利用ありがとうございました。'
+  sleep 2
+  mcrcon 'kickall HNXサーバーが復旧しました。'
+fi
+
+echo ${STAT} > /var/run/ckhnx

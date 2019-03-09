@@ -1,0 +1,12 @@
+#!/bin/sh
+mcrcon "pex group admins create"
+mcrcon "pex group admins add *"
+
+mcrcon "pex group default_ delete"
+mcrcon "pex group default_ create"
+mcrcon "pex group default_ add -*"
+mcrcon "pex group default parents set default_"
+
+mcrcon "pex reload"
+
+

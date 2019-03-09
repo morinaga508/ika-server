@@ -1,0 +1,11 @@
+# do daily/weekly/monthly maintenance
+# min	hour	day	month	weekday	command
+#*/15	*	*	*	*	run-parts /etc/periodic/15min
+#0	*	*	*	*	run-parts /etc/periodic/hourly
+#0	2	*	*	*	run-parts /etc/periodic/daily
+#0	3	*	*	6	run-parts /etc/periodic/weekly
+#0	5	1	*	*	run-parts /etc/periodic/monthly
+*/6	*	*	*	*	test "${NOHNX}" = true || /usr/local/spigot/bin/updown
+30	*	*	*	*	/usr/local/bin/mcrcon 'lagg gc'
+30	*/2	*	*	*	nice -n 20 /usr/local/spigot/bin/mcbackup
+*/20	*	*	*	*	/usr/local/spigot/bin/autorankfix

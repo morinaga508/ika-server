@@ -1,0 +1,276 @@
+# [][][][][][][][][][][][][][][][][][][][][]
+#  CratesPlus V4.5.1 Config
+# [][][][][][][][][][][][][][][][][][][][][]
+# ------------------------------------------
+# There are many placeholders that can now be used withing the config and messages file, placeholders are as followed:
+# - %name% - Replaces with the players name, Example: "Notch".
+# - %displayname% - Replaces with the players display name, Example: "[Owner] Notch".
+# - %uuid% - Replaces with the players UUID.
+# - %crate% - The crate types name.
+# - %prize% - The name of the winning.
+# - %percentage% - Percentage of the winning, useful for "Chance Message".
+# - %rand;100;500% - Generates a random number between two numbers, example is between 100 and 500.
+# ------------------------------------------
+# Don't change the config version!
+
+Config Version: 6
+Update Checks: false
+Update Branch: spigot
+Metrics: true
+Default Opener: BasicGUI
+Default Cooldown: 5
+Crate Protection: true
+Disable Key Swapping: false
+Default Hologram Text:
+#- '%crate%'
+#- '右クリックでガチャを回す'
+#- '左クリックで景品を見る'
+Crates:
+  Diamond:
+    Knockback: 0.5
+    Broadcast: false
+    Firework: true
+    Color: GREEN
+    Block: CHEST
+    Preview: true
+    Cooldown: 2
+    Hide Percentages: true
+    Permission: cratesplus.crate.diamond
+    Key:
+      Item: DIAMOND
+      Name: 'ガチャメダル'
+      Enchanted: true
+      Lore:
+      - '&6再発行、払い戻し不可'
+    Winnings:
+      '1':
+        Type: COMMAND
+        Item Type: DIAMOND_BLOCK
+        Item Data: 0
+        Percentage: 0.01
+        Commands:
+        - 'essentials:eco give %name% 10000'
+        - 'say %name% さんがガチャで${DOLLAR}10,000を獲得しました!'
+        Name: '&b現金'
+        Amount: 1
+        Lore: 
+        - '${DOLLAR}10,000'
+      '2':
+        Type: COMMAND
+        Item Type: EMERALD_BLOCK
+        Item Data: 0
+        Percentage: 0.04
+        Commands:
+        - 'essentials:eco give %name% 5000'
+        - 'say %name% さんがガチャで${DOLLAR}5,000を獲得しました!'
+        Name: '&a現金'
+        Amount: 1
+        Lore:
+        - '${DOLLAR}5,000'
+      '3':
+        Type: COMMAND
+        Item Type: GOLD_BLOCK
+        Item Data: 0
+        Percentage: 0.15
+        Commands:
+        - 'essentials:eco give %name% 1000'
+        - 'say %name% さんがガチャで${DOLLAR}1,000を獲得しました!'
+        Name: '&e現金'
+        Amount: 1
+        Lore:
+        - '${DOLLAR}1,000'
+      '4':
+        Type: COMMAND
+        Item Type: IRON_BLOCK
+        Item Data: 0
+        Percentage: 0.3
+        Commands:
+        - 'essentials:eco give %name% 500'
+        - 'say %name% さんがガチャで${DOLLAR}500を獲得しました!'
+        Name: '&f現金'
+        Amount: 1
+        Lore:
+        - '${DOLLAR}500'
+      '5':
+        Type: ITEM
+        Item Type: TOTEM
+        Item Data: 0
+        Percentage: 0.3
+        Amount: 1
+      '6':
+        Type: ITEM
+        Item Type: GOLDEN_APPLE
+        Item Data: 1
+        Percentage: 0.3
+        Amount: 1
+      '7':
+        Type: ITEM
+        Item Type: PURPLE_SHULKER_BOX
+        Item Data: 0
+        Percentage: 0.3
+        Amount: 1
+      '8':
+        Type: ITEM
+        Item Type: BEACON
+        Item Data: 0
+        Percentage: 0.3
+        Amount: 1
+      '9':
+        Type: ITEM
+        Item Type: SADDLE
+        Item Data: 0
+        Percentage: 1.5
+        Amount: 1
+      '10':
+        Type: ITEM
+        Item Type: NAME_TAG
+        Item Data: 0
+        Percentage: 1.5
+        Amount: 1
+      '11':
+        Type: ITEM
+        Item Type: EXP_BOTTLE
+        Item Data: 0
+        Percentage: 1.5
+        Amount: 16
+      '12':
+        Type: ITEM
+        Item Type: DRAGONS_BREATH
+        Item Data: 0
+        Percentage: 1.5
+        Amount: 16
+      '13':
+        Type: ITEM
+        Item Type: WEB
+        Item Data: 0
+        Percentage: 1.5
+        Amount: 16
+      '14':
+        Type: COMMAND
+        Item Type: ENCHANTED_BOOK
+        Item Data: 0
+        Percentage: 1.5
+        Commands:
+        - 'give %name% minecraft:enchanted_book 1 0 {StoredEnchantments:[{id:70,lvl:1}]}'
+        Amount: 1
+        Enchantments: 
+          - 'MENDING'
+      '15':
+        Type: ITEM
+        Item Type: SLIME_BLOCK
+        Item Data: 0
+        Percentage: 3
+        Amount: 4
+      '16':
+        Type: ITEM
+        Item Type: DIAMOND
+        Item Data: 0
+        Percentage: 3
+        Amount: 8
+      '17':
+        Type: ITEM
+        Item Type: INK_SACK
+        Item Data: 4
+        Percentage: 3
+        Amount: 16
+      '18':
+        Type: ITEM
+        Item Type: IRON_INGOT
+        Item Data: 0
+        Percentage: 3
+        Amount: 16
+      '19':
+        Type: ITEM
+        Item Type: SEA_LANTERN
+        Item Data: 0
+        Percentage: 3
+        Amount: 16
+      '20':
+        Type: ITEM
+        Item Type: PRISMARINE_SHARD
+        Item Data: 0
+        Percentage: 3
+        Amount: 64
+      '21':
+        Type: ITEM
+        Item Type: BOOKSHELF
+        Item Data: 0
+        Percentage: 3
+        Amount: 16
+      '22':
+        Type: ITEM
+        Item Type: PACKED_ICE
+        Item Data: 0
+        Percentage: 3
+        Amount: 16
+      '23':
+        Type: ITEM
+        Item Type: CLAY
+        Item Data: 0
+        Percentage: 3
+        Amount: 16
+      '24':
+        Type: ITEM
+        Item Type: SPONGE
+        Item Data: 0
+        Percentage: 3
+        Amount: 16
+      '25':
+        Type: ITEM
+        Item Type: QUARTZ_BLOCK
+        Item Data: 0
+        Percentage: 3
+        Amount: 16
+      '26':
+        Type: ITEM
+        Item Type: NETHER_STALK
+        Item Data: 0
+        Percentage: 7
+        Amount: 16
+      '27':
+        Type: ITEM
+        Item Type: HAY_BLOCK
+        Item Data: 0
+        Percentage: 7
+        Amount: 16
+      '28':
+        Type: ITEM
+        Item Type: COOKED_BEEF
+        Item Data: 0
+        Percentage: 7
+        Amount: 16
+      '29':
+        Type: ITEM
+        Item Type: INK_SACK
+        Item Data: 0
+        Percentage: 7
+        Amount: 16
+      '30':
+        Type: ITEM
+        Item Type: GLASS
+        Item Data: 0
+        Percentage: 7
+        Amount: 16
+      '31':
+        Type: ITEM
+        Item Type: WATER_LILY
+        Item Data: 0
+        Percentage: 7
+        Amount: 16
+      '32':
+        Type: ITEM
+        Item Type: BONE
+        Item Data: 0
+        Percentage: 7
+        Amount: 16
+      '33':
+        Type: COMMAND
+        Item Type: TNT
+        Item Data: 0
+        Name: はずれ
+        Percentage: 7.3
+        Commands:
+        - 'execute %name% ~ ~ ~ summon tnt ~ ~ ~ {Fuse:0}'
+        - 'effect %name% minecraft:levitation 1 100 true'
+        Amount: 1
+

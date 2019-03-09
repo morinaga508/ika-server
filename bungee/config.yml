@@ -1,0 +1,52 @@
+connection_throttle_limit: 3
+online_mode: true
+log_commands: false
+network_compression_threshold: 0
+listeners:
+- query_port: 25565
+  motd: '${MOTD}'
+  tab_list: GLOBAL_PING
+  query_enabled: false
+  proxy_protocol: false
+  ping_passthrough: false
+  priorities:
+  - hub
+  bind_local_address: true
+  host: 0.0.0.0:25565
+  max_players: ${MAXPLAYERS}
+  tab_size: 60
+  force_default_server: true
+  forced_hosts:
+    direct.mc.publicika.net: main
+connection_throttle: 4000
+groups:
+  ${OP}:
+  - admin
+log_pings: true
+ip_forward: true
+prevent_proxy_connections: true
+forge_support: false
+stats: 2132da90-3244-42c9-aeb1-69bdce40dd52
+inject_commands: false
+disabled_commands:
+- aac
+- axr
+timeout: 29500
+permissions:
+  admin:
+  - bungeecord.command.server
+  - bungeecord.command.list
+  - bungeecord.command.alert
+  - bungeecord.command.end
+  - bungeecord.command.ip
+  - bungeecord.command.reload
+servers:
+  hub:
+    motd: '${MOTD}'
+    address: hub:25565
+    restricted: false
+  main:
+    motd: '${MOTD}'
+    address: main:25565
+    restricted: false
+player_limit: ${MAXPLAYERS}

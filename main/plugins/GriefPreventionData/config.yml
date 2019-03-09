@@ -1,0 +1,148 @@
+# Default values are perfect for most servers.  If you want to customize and have a question, look for the answer here first: http://dev.bukkit.org/bukkit-plugins/grief-prevention/pages/setup-and-configuration/
+GriefPrevention:
+  SeaLevelOverrides:
+    world: -1
+    world_the_end: -1
+    hunt: -1
+    resource: -1
+    resource_n: -1
+    hunt_n: -1
+    build0: -1
+  Claims:
+    Mode:
+      world_the_end: Disabled
+      hunt_n: Disabled
+      resource: Disabled
+      build0: SurvivalRequiringClaims
+      hunt: Disabled
+      resource_n: Disabled
+      world: Disabled
+    PreventGlobalMonsterEggs: true
+    PreventTheft: true
+    ProtectCreatures: true
+    PreventButtonsSwitches: true
+    LockWoodenDoors: false
+    LockTrapDoors: false
+    LockFenceGates: true
+    EnderPearlsRequireAccessTrust: true
+    ProtectHorses: true
+    InitialBlocks: 100
+    Claim Blocks Accrued Per Hour:
+      Default: 100
+    Max Accrued Claim Blocks:
+      Default: 80000
+    Accrued Idle Threshold: 0
+    AccruedIdlePercent: 0
+    AbandonReturnRatio: 6.6
+    AutomaticNewPlayerClaimsRadius: -1
+    ExtendIntoGroundDistance: 255
+    MinimumWidth: 5
+    MinimumArea: 100
+    MaximumDepth: 0
+    InvestigationTool: STICK
+    ModificationTool: GOLD_SPADE
+    Expiration:
+      ChestClaimDays: 7
+      UnusedClaimDays: 14
+      AllClaims:
+        DaysInactive: 60
+        ExceptWhenOwnerHasTotalClaimBlocks: 200
+        ExceptWhenOwnerHasBonusClaimBlocks: 100
+      AutomaticNatureRestoration:
+        SurvivalWorlds: true
+    AllowTrappedInAdminClaims: false
+    MaximumNumberOfClaimsPerPlayer: 3
+    CreationRequiresWorldGuardBuildPermission: true
+    PortalGenerationRequiresPermission: false
+    VillagerTradingRequiresPermission: true
+    CommandsRequiringAccessTrust: /sethome
+    DeliverManuals: true
+    ManualDeliveryDelaySeconds: 30
+  Spam:
+    Enabled: false
+    LoginCooldownSeconds: 60
+    LoginLogoutNotificationsPerMinute: 5
+    ChatSlashCommands: /me;/global;/local
+    WhisperSlashCommands: /tell;/pm;/r;/whisper;/msg
+    WarningMessage: '警告: チャットのペースが速いです。'
+    BanOffenders: false
+    BanMessage: Banned for spam.
+    AllowedIpAddresses: 1.2.3.4; 5.6.7.8
+    DeathMessageCooldownSeconds: 120
+    Logout Message Delay In Seconds: 0
+  PvP:
+    RulesEnabledInWorld:
+      world: false
+      world_the_end: false
+      resource: false
+      build0: false
+    ProtectFreshSpawns: true
+    PunishLogout: true
+    CombatTimeoutSeconds: 15
+    AllowCombatItemDrop: false
+    BlockedSlashCommands: /home;/vanish;/spawn;/tpa
+    ProtectPlayersInLandClaims:
+      PlayerOwnedClaims: true
+      AdministrativeClaims: true
+      AdministrativeSubdivisions: true
+    AllowLavaDumpingNearOtherPlayers: true
+    AllowFlintAndSteelNearOtherPlayers: true
+    ProtectPetsOutsideLandClaims: false
+  Economy:
+    ClaimBlocksPurchaseCost: 0.0
+    ClaimBlocksSellValue: 0.0
+  ProtectItemsDroppedOnDeath:
+    PvPWorlds: false
+    NonPvPWorlds: true
+  BlockLandClaimExplosions: true
+  BlockSurfaceCreeperExplosions: true
+  BlockSurfaceOtherExplosions: true
+  LimitSkyTrees: true
+  LimitTreeGrowth: false
+  LimitPistonsToLandClaims: true
+  FireSpreads: false
+  FireDestroys: false
+  AdminsGetWhispers: true
+  AdminsGetSignNotifications: true
+  SmartBan: true
+  Mute New Players Using Banned Words: true
+  MaxPlayersPerIpAddress: 3
+  Siege:
+    Worlds: []
+    BreakableBlocks:
+    - DIRT
+    - GRASS
+    - LONG_GRASS
+    - COBBLESTONE
+    - GRAVEL
+    - SAND
+    - GLASS
+    - THIN_GLASS
+    - WOOD
+    - WOOL
+    - SNOW
+  EndermenMoveBlocks: false
+  SilverfishBreakBlocks: false
+  CreaturesTrampleCrops: false
+  RabbitsEatCrops: true
+  HardModeZombiesBreakDoors: false
+  Database:
+    URL: 'jdbc:mysql://${MYSQL_HOST}:${MYSQL_PORT}/griefprevention'
+    UserName: '${MYSQL_USER}'
+    Password: '${MYSQL_PASSWORD}'
+  UseBanCommand: true
+  BanCommandPattern: tempban %name% 10m %reason%
+  Mods:
+    BlockIdsRequiringAccessTrust: []
+    BlockIdsRequiringContainerTrust:
+    - 99999:*:Example - ID 99999, all data values.
+    BlockIdsExplodable: []
+    PlayersIgnoringAllClaims: []
+  Abridged Logs:
+    Days To Keep: 7
+    Included Entry Types:
+      Social Activity: true
+      Suspicious Activity: true
+      Administrative Activity: false
+      Debug: false
+      Muted Chat Messages: false

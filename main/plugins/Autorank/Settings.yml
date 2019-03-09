@@ -1,0 +1,35 @@
+# 
+#                                                                           #
+#                   Autorank Settings                                       #
+#                                                                           #
+#   This config is used to configure Autorank. The other configs provide    #
+#   a way to configure the rank system. This config is for configuring the  #
+#   the options Autorank has to offer you                                   #
+#                                                                           #
+afk integration: true
+use partial completion: true
+interval check: 5
+use time of: Autorank
+leaderboard layout: '&6&r | &b&p - &7&d %day%, &h %hour% and &m %minute%.'
+leaderboard length: 5
+check command layout: '&p has played for &time and is on path ''''&path''''. Requirements
+  to be ranked up: &reqs'
+sql:
+  enabled: true
+  hostname: ${MYSQL_HOST}:${MYSQL_PORT}
+  username: ${MYSQL_USER}
+  password: ${MYSQL_PASSWORD}
+  database: autorank
+  table: autorank
+auto-updater:
+  check-for-new-versions: true
+advanced dependency output: false
+show help command based on permission: false
+use debug: false
+show warnings: true
+use primary group for vault: true
+broadcast resetting of data files: true
+use global time in leaderboard: false
+disable automatic path checking: false
+automatically archive old data: true
+primary storage provider: flatfile

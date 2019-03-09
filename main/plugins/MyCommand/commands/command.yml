@@ -1,0 +1,62 @@
+spawn_comp:
+  command: /c
+  type: RUN_COMMAND
+  permission-required: false
+  runcmd:
+  - '/spawn'
+  cost: 0
+
+ender_chest_open:
+  command: /eco
+  type: RUN_COMMAND
+  permission-required: false
+  runcmd:
+  - '/ec open'
+  cost: 0
+
+ender_chest_open_comp:
+  command: /e8
+  type: RUN_COMMAND
+  permission-required: false
+  runcmd:
+  - '/ec open'
+  cost: 0
+
+coreprotect_inspect:
+  command: /coi
+  type: RUN_COMMAND
+  permission-required: false
+  runcmd:
+  - '/co i'
+  cost: 0
+
+diamond_medal:
+  command: /d2m
+  type: RUN_AS_OPERATOR
+  permission-required: true
+  itemcost: 'DIAMOND_ORE:1'
+  runcmd:
+  - '/crate key ${DOLLAR}player Diamond'
+
+diamond_medal_10:
+  command: /d2m10
+  type: RUN_AS_OPERATOR
+  permission-required: true
+  itemcost: 'DIAMOND_ORE:10'
+  runcmd:
+  - '/crate key ${DOLLAR}player Diamond 10'
+
+#iconmenu:
+#  command: /m
+#  type: ICON_MENU
+#  text:
+#  - 'POSITION:ITEM_NAME:ITEMDATA:COMMAND/MESSAGE:TITLE:DESCRIPTION;MULTILINES'
+#  - 'ITEM_NAME can also be ITEM_NAME;ENCHANTMENT_NAME;LEVEL'
+#  iconmenu_title: '&4メニュー'
+#  iconmenu_size: 9
+#  iconmenu_commands:
+#  - '0:COMPASS:0:/spawn:&bSpawn:&7スポーン地点へワープ'
+#  - '1:ENDER_CHEST:0:/ec open:&bEnder Chest:&7エンダーチェストを開く'
+#  cost: 0
+#  delaytimer: 5
+

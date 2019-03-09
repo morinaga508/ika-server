@@ -1,0 +1,46 @@
+#!/bin/bash
+. /opt/env
+
+test -z "${BUCKET}" && exit
+
+mcrcon pl > /dev/null 2>&1
+test $? -gt 1 && exit 1
+
+mcrcon 'say 1分後にワールドのバックアップを開始します。'
+sleep 1m
+mcrcon 'say ワールドのバックアップを実行しています。'
+
+# Start
+rm -rf /tmp/backup
+mkdir /tmp/backup
+cd /tmp/backup
+
+# Database
+DATABASES=(`mysql -Nse  'show databases' | sed -e '/information_schema\|dynmap/d'`)
+for database in ${DATABASES[@]}; do
+  mysqldump ${database} > ${database}.sql
+done
+tar czf database.tar.gz *.sql
+aws s3 cp database.tar.gz s3://${BUCKET}/`date +%Y`/`date +%m`/`date +%d`/
+rm -f database.tar.gz
+
+# main
+mcrcon save-off
+mcrcon 'save-all flush'
+tar czf main.tar.gz -C /usr/local/spigot/ data
+mcrcon save-on
+aws s3 cp main.tar.gz s3://${BUCKET}/`date +%Y`/`date +%m`/`date +%d`/
+rm -f main.tar.gz
+
+# Other
+for container in bungee hub web; do
+  tar czf ${container}.tar.gz -C /mnt/ ${container}
+  aws s3 cp ${container}.tar.gz s3://${BUCKET}/`date +%Y`/`date +%m`/`date +%d`/
+  rm -f ${container}.tar.gz
+done
+
+
+cd -
+rm -rf /tmp/backup
+
+mcrcon 'say ワールドのバックアップが完了しました。'

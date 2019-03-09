@@ -1,0 +1,110 @@
+version: '2'
+services:
+    bungee:
+        build:
+            context: ./bungee/
+        image: bungee
+        mem_limit: 512m
+        logging:
+            driver: json-file
+        restart: on-failure
+        environment:
+          - OP=${OP}
+          - MOTD=${MOTD}
+          - MAXPLAYERS=${MAXPLAYERS}
+        ports:
+            - 25565:25565
+        volumes:
+            - ./volumes/bungee:/usr/local/bungee/data
+    hub:
+        build:
+            context: ./hub/
+        image: mc1.12-hub
+        mem_limit: 512m
+        logging:
+            driver: json-file
+        depends_on:
+            - bungee
+            - database
+        restart: on-failure
+        environment:
+            - EULA=${EULA}
+            - OP=${OP}
+            - JAVA_OPTS=${HUB_JAVA_OPTS}
+            - MAXPLAYERS=${MAXPLAYERS}
+            - RCONPASSWD=${RCONPASSWD}
+            - MYSQL_HOST=database
+            - MYSQL_PORT=3306
+            - MYSQL_USER=minecraft
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - COMMANDBLOCK=${COMMANDBLOCK}
+            - NOHNX=${NOHNX}
+        volumes:
+            - ./volumes/hub:/usr/local/spigot/data
+            - ./hub/plugins:/usr/local/spigot/plugins.config
+    main:
+        build:
+            context: ./main/
+        image: mc1.12-main
+        logging:
+            driver: json-file
+        depends_on:
+            - bungee
+            - hub
+            - database
+        restart: on-failure
+        environment:
+            - EULA=${EULA}
+            - OP=${OP}
+            - JAVA_OPTS=${MAIN_JAVA_OPTS}
+            - MAXPLAYERS=${MAXPLAYERS}
+            - RCONPASSWD=${RCONPASSWD}
+            - MYSQL_HOST=database
+            - MYSQL_PORT=3306
+            - MYSQL_USER=minecraft
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+            - COMMANDBLOCK=${COMMANDBLOCK}
+            - NOHNX=${NOHNX}
+            - BUCKET=${BUCKET}
+            - ACCESSKEY=${ACCESSKEY}
+            - SECRETKEY=${SECRETKEY}
+        volumes:
+            - ./volumes/main:/usr/local/spigot/data
+            - ./volumes/bungee:/mnt/bungee:ro
+            - ./volumes/hub:/mnt/hub:ro
+            - ./volumes/web:/mnt/web:ro
+            - ./main/plugins:/usr/local/spigot/plugins.config
+
+    database:
+        image: mysql:5.7
+        logging:
+            driver: json-file
+        restart: on-failure
+        environment:
+            - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+            - MYSQL_USER=minecraft
+            - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+        volumes:
+            - ./database:/docker-entrypoint-initdb.d:ro
+            - ./volumes/database:/var/lib/mysql
+    web:
+        build:
+            context: ./web/
+        image: web
+        logging:
+            driver: json-file
+        depends_on:
+            - main
+        restart: on-failure
+        ports:
+            - 80:80
+            - 443:443
+        environment:
+            - HTTPS=${HTTPS}
+            - CERTMAIL=${CERTMAIL}
+            - DOMAIN=${DOMAIN}
+            - NOHNX=${NOHNX}
+        volumes:
+            - ./volumes/web/cert:/etc/letsencrypt
+            - ./volumes/web/content:/usr/share/nginx/html:ro
+            - ./volumes/main/plugins/dynmap/web:/var/www/map:ro

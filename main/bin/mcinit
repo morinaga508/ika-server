@@ -1,0 +1,15 @@
+#!/bin/sh
+mcrcon "op ${OP}"
+mcrcon "whitelist add ${OP}"
+/usr/local/spigot/bin/mkperm
+mcrcon "pex user ${OP} group set admins"
+mcrcon "co purge t:60m"
+mcrcon "ch create Dynmap"
+DYNCHPASS=`head -c 100b /dev/urandom | md5sum | cut -b -10`
+mcrcon "ch option Dynmap color=gray broadcast=true visible=false password=${DYNCHPASS}"
+
+if [ "${NOHNX}" = true ]; then
+  touch /var/run/nohnx
+  mcrcon "whitelist off"
+fi
+

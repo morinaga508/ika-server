@@ -1,0 +1,16 @@
+#!/bin/bash
+test -f /var/run/nohnx && exit
+test -d /var/run/ckhnx || mkdir -p /var/run/ckhnx
+mcstatus play.hnxserver.com ping > /dev/null 2>&1
+STATUS=$?
+echo ${STATUS} > /var/run/ckhnx/`date +%M`
+
+test -d /var/www/ || mkdir -p /var/www/
+cd /var/run/ckhnx/
+STAT=$(cat $(ls -tr . | tail -n 5) | tr -d '\n')
+if [ "${STAT}" = 00000 ]; then
+  echo up > /var/www/ckhnx
+elif [ "${STAT}" = 11111 ]; then
+  rm -f /var/www/ckhnx
+fi
+

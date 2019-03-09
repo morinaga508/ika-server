@@ -1,0 +1,43 @@
+server {
+    listen 80;
+    location /healthcheck_hnx {
+        alias  /var/www/ckhnx;
+    }
+    if (${DOLLAR}request_uri !~ ^/healthcheck.*) {
+        return 301 https://${DOLLAR}host${DOLLAR}request_uri;
+    }
+}
+
+server {
+    listen 443 ssl;
+
+    ssl_certificate     /etc/letsencrypt/live/${DOMAIN}/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/${DOMAIN}/privkey.pem;
+
+    server_name  ${DOMAIN};
+
+    location / {
+        root   /usr/share/nginx/html;
+        index  index.html index.htm;
+    }
+    location /map/ {
+        alias  /var/www/map/;
+    }
+
+
+    location ~ \.php${DOLLAR} {
+        root           /var/www/;
+        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_index  index.php;
+        fastcgi_param  SCRIPT_FILENAME  ${DOLLAR}document_root${DOLLAR}fastcgi_script_name;
+        include        fastcgi_params;
+    }
+    location /healthcheck_ckhnx {
+        alias  /var/www/ckhnx;
+    }
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+}
+

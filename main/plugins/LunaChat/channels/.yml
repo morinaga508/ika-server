@@ -1,0 +1,18 @@
+broadcast: false
+visible: true
+color: ''
+moderator: []
+allowcc: true
+format: '&7[%world&7/&6%prefix%username&r%suffix&7]: &r%msg'
+hided: []
+range: 0
+ban_expires: {}
+password: ''
+world: false
+members: []
+name: ''
+mute_expires: {}
+alias: ''
+banned: []
+muted: []
+desc: ''

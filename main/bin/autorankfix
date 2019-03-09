@@ -1,0 +1,23 @@
+#!/bin/bash
+
+for lv in lv00050 lv00100 lv00500 lv01000 lv02000 lv03000 lv04000 lv05000 lv06000 lv07000 lv08000 lv09000; do
+  PLAYERS=(`mcrcon -c "list ${lv}" | tail +2 | tr -d ', ' | strings | tail +2 | grep -v nooneonlineinthisgroup`)
+  for player in ${PLAYERS[@]}; do
+    CHECK=(`mcrcon -c "ar check ${player}" | strings | grep 'meets all the requirements for path'`)
+    case "${CHECK[6]}" in
+      Stage0)  mcrcon -c "sudo ${player} ar choose Stage1";;
+      Stage1)  mcrcon -c "sudo ${player} ar choose Stage2";;
+      Stage2)  mcrcon -c "sudo ${player} ar choose Stage3";;
+      Stage3)  mcrcon -c "sudo ${player} ar choose Stage4";;
+      Stage4)  mcrcon -c "sudo ${player} ar choose Stage5";;
+      Stage5)  mcrcon -c "sudo ${player} ar choose Stage6";;
+      Stage6)  mcrcon -c "sudo ${player} ar choose Stage7";;
+      Stage7)  mcrcon -c "sudo ${player} ar choose Stage8";;
+      Stage8)  mcrcon -c "sudo ${player} ar choose Stage9";;
+      Stage9)  mcrcon -c "sudo ${player} ar choose Stage10";;
+      Stage10) mcrcon -c "sudo ${player} ar choose Stage11";;
+      Stage11) mcrcon -c "sudo ${player} ar choose Stage12";;
+      Stage12) mcrcon -c "sudo ${player} ar choose Stage13";;
+    esac
+  done
+done

@@ -1,0 +1,391 @@
+#!/bin/bash
+GROUPLIST=(
+  default
+  lv00050
+  lv00100
+  lv00500
+  lv01000
+  lv02000
+  lv03000
+  lv04000
+  lv05000
+  lv06000
+  lv07000
+  lv08000
+  lv09000
+  lv10000
+)
+
+mcrcon "pex group admins create"
+mcrcon "pex group admins add *"
+mcrcon "pex group admins suffix \" &1Admin\""
+
+for group in "${GROUPLIST[@]}"; do
+  mcrcon "pex group ${group}_ delete"
+  mcrcon "pex group ${group}_ create"
+done
+
+group=default_
+DENY_ALL=(
+  '-bukkit.command.version'
+  '-bukkit.command.plugins'
+  '-bukkit.command.help'
+  '-minecraft.command.*'
+  '-worldedit.*'
+  '-lagg.*'
+  '-plugman.*'
+  '-announcer.*'
+  '-worldborder.*'
+  '-griefprevention.buysellclaimblocks'
+  '-lockette.admin.*'
+  '-lockette.towny.*'
+  '-worldguard.*'
+  '-multiverse.*'
+  '-permissions.*'
+  '-rewarddaily.*'
+  '-vault.*'
+  '-statz.*'
+  '-axr.*'
+  '-AAC.*'
+)
+
+LIMIT_BUKKIT=(
+  -bukkit.command.tps
+)
+
+LIMIT_CHAT=(
+ -lunachat.allowcc
+ -lunachat.option
+ -lunachat.create
+ -lunachat.invite
+ -lunachat.kick
+ -lunachat.ban
+ -lunachat.pardon
+ -lunachat.mute
+ -lunachat.unmute
+ -lunachat.remove
+ -lunachat.moderator
+)
+
+LIMIT_ASEDIT=(
+  -asedit.invisible
+)
+
+DEFAULT=(
+  CustomEnderChest.level.0
+  CustomEnderChest.commands
+  essentials.spawn
+  essentials.home
+  essentials.delhome
+  essentials.home.bed
+  essentials.sethome
+  essentials.sethome.bed
+  essentials.mail
+  essentials.mail.send
+  mcmmo.item.chimaerawing
+  cratesplus.crate.diamond
+  mycommand.sign.use
+  mycommand.cmd.diamond_medal
+  mycommand.cmd.diamond_medal_10
+)
+for perm in "${DENY_ALL[@]}" \
+            "${LIMIT_CHAT[@]}" \
+            "${LIMIT_ASEDIT[@]}" \
+            "${DEFAULT[@]}"
+do
+  mcrcon "pex group ${GROUPLIST[0]}_ add ${perm}" 
+done
+
+
+LV00050=(
+  essentials.signs.use.buy
+  essentials.signs.use.sell
+  essentials.balance
+  essentials.balancetop
+  essentials.pay
+  PlayerShops.open
+  PlayerShops.create
+  PlayerShops.buyslot
+  essentials.sethome.multiple.lv00050
+)
+for perm in "${DENY_ALL[@]}" \
+            "${LIMIT_BUKKIT[@]}" \
+            "${LIMIT_CHAT[@]}" \
+            "${LIMIT_ASEDIT[@]}" \
+            "${DEFAULT[@]}" \
+            "${LV00050[@]}"
+do
+  mcrcon "pex group ${GROUPLIST[1]}_ add ${perm}"
+done
+
+
+LV00100=(
+  userdefined.waterbucket.put
+)
+for perm in "${DENY_ALL[@]}" \
+            "${LIMIT_BUKKIT[@]}" \
+            "${LIMIT_CHAT[@]}" \
+            "${LIMIT_ASEDIT[@]}" \
+            "${DEFAULT[@]}" \
+            "${LV00050[@]}" \
+            "${LV00100[@]}"
+do
+  mcrcon "pex group ${GROUPLIST[2]}_ add ${perm}"
+done
+
+
+LV00500=(
+  CustomEnderChest.level.1
+)
+for perm in "${DENY_ALL[@]}" \
+            "${LIMIT_BUKKIT[@]}" \
+            "${LIMIT_CHAT[@]}" \
+            "${LIMIT_ASEDIT[@]}" \
+            "${DEFAULT[@]}" \
+            "${LV00050[@]}" \
+            "${LV00100[@]}" \
+            "${LV00500[@]}"
+do
+  mcrcon "pex group ${GROUPLIST[3]}_ add ${perm}"
+done
+
+
+LV01000=(
+  add dynmap.webchat
+  add dynmap.webregister
+  add userdefined.lavabucket.put
+  add userdefined.dispenser.put
+  add userdefined.tnt.put
+  add PlayerShop.Slots.1
+)
+for perm in "${DENY_ALL[@]}" \
+            "${LIMIT_BUKKIT[@]}" \
+            "${LIMIT_CHAT[@]}" \
+            "${DEFAULT[@]}" \
+            "${LV00050[@]}" \
+            "${LV00100[@]}" \
+            "${LV00500[@]}" \
+            "${LV01000[@]}"
+do
+  mcrcon "pex group ${GROUPLIST[4]}_ add ${perm}"
+done
+
+
+LV02000=(
+  CustomEnderChest.level.2
+  PlayerShop.Slots.2
+)
+for perm in "${DENY_ALL[@]}" \
+            "${LIMIT_BUKKIT[@]}" \
+            "${LIMIT_CHAT[@]}" \
+            "${DEFAULT[@]}" \
+            "${LV00050[@]}" \
+            "${LV00100[@]}" \
+            "${LV00500[@]}" \
+            "${LV01000[@]}" \
+            "${LV02000[@]}"
+do
+  mcrcon "pex group ${GROUPLIST[5]}_ add ${perm}"
+done
+
+
+LV03000=(
+  essentials.chat.color
+  essentials.signs.color
+  essentials.sethome.multiple.lv03000
+  PlayerShop.Slots.3
+)
+for perm in "${DENY_ALL[@]}" \
+            "${LIMIT_BUKKIT[@]}" \
+            "${DEFAULT[@]}" \
+            "${LV00050[@]}" \
+            "${LV00100[@]}" \
+            "${LV00500[@]}" \
+            "${LV01000[@]}" \
+            "${LV02000[@]}" \
+            "${LV03000[@]}"
+do
+  mcrcon "pex group ${GROUPLIST[6]}_ add ${perm}"
+done
+
+LV04000=(
+  CustomEnderChest.level.3
+  PlayerShop.Slots.4
+)
+for perm in "${DENY_ALL[@]}" \
+            "${LIMIT_BUKKIT[@]}" \
+            "${DEFAULT[@]}" \
+            "${LV00050[@]}" \
+            "${LV00100[@]}" \
+            "${LV00500[@]}" \
+            "${LV01000[@]}" \
+            "${LV02000[@]}" \
+            "${LV03000[@]}" \
+            "${LV04000[@]}"
+do
+  mcrcon "pex group ${GROUPLIST[7]}_ add ${perm}"
+done
+
+
+LV05000=(
+  coreprotect.inspect
+  essentials.sethome.multiple.lv05000
+  bukkit.command.tps
+  PlayerShop.Slots.5
+)
+for perm in "${DENY_ALL[@]}" \
+            "${DEFAULT[@]}" \
+            "${LV00050[@]}" \
+            "${LV00100[@]}" \
+            "${LV00500[@]}" \
+            "${LV01000[@]}" \
+            "${LV02000[@]}" \
+            "${LV03000[@]}" \
+            "${LV04000[@]}" \
+            "${LV05000[@]}"
+do
+  mcrcon "pex group ${GROUPLIST[8]}_ add ${perm}"
+done
+
+
+LV06000=(
+  essentials.hat
+)
+for perm in "${DENY_ALL[@]}" \
+            "${DEFAULT[@]}" \
+            "${LV00050[@]}" \
+            "${LV00100[@]}" \
+            "${LV00500[@]}" \
+            "${LV01000[@]}" \
+            "${LV02000[@]}" \
+            "${LV03000[@]}" \
+            "${LV04000[@]}" \
+            "${LV05000[@]}" \
+            "${LV06000[@]}"
+do
+  mcrcon "pex group ${GROUPLIST[9]}_ add ${perm}"
+done
+
+
+LV07000=(
+  CustomEnderChest.level.4
+)
+for perm in "${DENY_ALL[@]}" \
+            "${DEFAULT[@]}" \
+            "${LV00050[@]}" \
+            "${LV00100[@]}" \
+            "${LV00500[@]}" \
+            "${LV01000[@]}" \
+            "${LV02000[@]}" \
+            "${LV03000[@]}" \
+            "${LV04000[@]}" \
+            "${LV05000[@]}" \
+            "${LV06000[@]}" \
+            "${LV07000[@]}"
+do
+  mcrcon "pex group ${GROUPLIST[10]}_ add ${perm}"
+done
+
+
+LV08000=(
+  petblocks.command.use
+  petblocks.action.rename
+  petblocks.action.customskin
+  petblocks.action.ride
+  petblocks.action.wear
+  petblocks.action.cannon
+  petblocks.selection.engines.all
+  petblocks.selection.simpleblockcostumes.all
+  petblocks.selection.coloredblockcostumes.all
+  petblocks.selection.playerheadcostumes.all
+  petblocks.selection.petcostumes.all
+  petblocks.selection.particles.all
+  petblocks.action.rename
+)
+for perm in "${DENY_ALL[@]}" \
+            "${DEFAULT[@]}" \
+            "${LV00050[@]}" \
+            "${LV00100[@]}" \
+            "${LV00500[@]}" \
+            "${LV01000[@]}" \
+            "${LV02000[@]}" \
+            "${LV03000[@]}" \
+            "${LV04000[@]}" \
+            "${LV05000[@]}" \
+            "${LV06000[@]}" \
+            "${LV07000[@]}" \
+            "${LV08000[@]}"
+do
+  mcrcon "pex group ${GROUPLIST[11]}_ add ${perm}"
+done
+
+
+LV09000=(
+  CustomEnderChest.level.5
+)
+for perm in "${DENY_ALL[@]}" \
+            "${DEFAULT[@]}" \
+            "${LV00050[@]}" \
+            "${LV00100[@]}" \
+            "${LV00500[@]}" \
+            "${LV01000[@]}" \
+            "${LV02000[@]}" \
+            "${LV03000[@]}" \
+            "${LV04000[@]}" \
+            "${LV05000[@]}" \
+            "${LV06000[@]}" \
+            "${LV07000[@]}" \
+            "${LV08000[@]}" \
+            "${LV09000[@]}"
+do
+  mcrcon "pex group ${GROUPLIST[12]}_ add ${perm}"
+done
+
+
+LV10000=(
+  essentials.workbench
+)
+for perm in "${DENY_ALL[@]}" \
+            "${DEFAULT[@]}" \
+            "${LV00050[@]}" \
+            "${LV00100[@]}" \
+            "${LV00500[@]}" \
+            "${LV01000[@]}" \
+            "${LV02000[@]}" \
+            "${LV03000[@]}" \
+            "${LV04000[@]}" \
+            "${LV05000[@]}" \
+            "${LV06000[@]}" \
+            "${LV07000[@]}" \
+            "${LV08000[@]}" \
+            "${LV09000[@]}" \
+            "${LV10000[@]}"
+do
+  mcrcon "pex group ${GROUPLIST[13]}_ add ${perm}"
+done
+
+
+for group in "${GROUPLIST[@]}"; do
+  mcrcon "pex group ${group} create"
+  mcrcon "pex group ${group} parents set ${group}_"
+done
+
+mcrcon "pex group default suffix \" &7Stage0\""
+mcrcon "pex group lv00050 suffix \" &fStage1\""
+mcrcon "pex group lv00100 suffix \" &eStage2\""
+mcrcon "pex group lv00500 suffix \" &dStage3\""
+mcrcon "pex group lv01000 suffix \" &cStage4\""
+mcrcon "pex group lv02000 suffix \" &bStage5\""
+mcrcon "pex group lv03000 suffix \" &aStage6\""
+mcrcon "pex group lv04000 suffix \" &9Stage7\""
+mcrcon "pex group lv05000 suffix \" &8Stage8\""
+mcrcon "pex group lv06000 suffix \" &6Stage9\""
+mcrcon "pex group lv07000 suffix \" &5Stage10\""
+mcrcon "pex group lv08000 suffix \" &4Stage11\""
+mcrcon "pex group lv09000 suffix \" &3Stage12\""
+mcrcon "pex group lv10000 suffix \" &2Stage13\""
+
+
+mcrcon "pex reload"
+
+
